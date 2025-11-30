@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" type="image/x-icon" href="https://obanket.ru/favicon.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентация obanket| obanket.ru</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-radius: 0 0 15px 15px;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            color: var(--secondary);
+            font-size: 24px;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            height: 80vh;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.6));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+        
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+        
+        section {
+            background: white;
+            border-radius: 15px;
+            padding: 50px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 4px;
+            background: var(--primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .problem-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border-left: 5px solid var(--accent);
+        }
+        
+        .problem-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .problem-card i {
+            font-size: 40px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .problem-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        .solution {
+            background: linear-gradient(135deg, var(--primary), #2c3e50);
+            color: white;
+        }
+        
+        .solution .section-title {
+            color: white;
+        }
+        
+        .solution-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .solution-text {
+            flex: 1;
+        }
+        
+        .solution-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .solution-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .audience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .audience-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-body {
+            padding: 25px;
+        }
+        
+        .card-body ul {
+            list-style-type: none;
+        }
+        
+        .card-body li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-body li:last-child {
+            border-bottom: none;
+        }
+        
+        .card-body li i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+        
+        .benefits {
+            background: var(--light);
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 30px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--primary);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border: 5px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .step-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 80px 50px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1549451371-64aa98a6f660?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: color 0.3s;
+        }
+        
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+        
+        .contact-item i {
+            font-size: 20px;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: var(--secondary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-content h2 {
+                font-size: 36px;
+            }
+            
+            .solution-content {
+                flex-direction: column;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .steps::before {
+                display: none;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    
+                    <i class="fas fa-glass-cheers" style="color: #3498db; font-size: 28px;"></i>
+                    <a href="https://obanket.ru/"><h1>obanket.<span>ru</span></h1></a>
+                    
+                </div>
+                <div class="nav-links">
+                    <a href="#problems">Проблемы</a>
+                    <a href="#solution">Решение</a>
+                    <a href="#audience">Аудитория</a>
+                    <a href="#benefits">Преимущества</a>
+                    <a href="#steps">Как начать</a>
+                    <a href="#contact">Контакты</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <h2>Партнерская программа obanket.ru</h2>
+                <p>Увеличивайте загрузку вашего заведения с помощью ведущей платформы по поиску площадок для мероприятий</p>
+                <a href="#contact" class="btn">Стать партнером</a>
+            </div>
+        </div>
+
+        <section id="problems">
+            <h2 class="section-title">Проблемы ресторанов, отелей и банкетных площадок</h2>
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Высокая стоимость привлечения клиентов</h3>
+                    <p>Дорогая контекстная реклама, SEO и маркетинг в социальных сетях съедают бюджет</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Сезонность и нестабильная загрузка</h3>
+                    <p>"Шумные" и "тихие" месяцы создают проблемы с планированием и доходами</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Ограниченный охват аудитории</h3>
+                    <p>Работа только в рамках своей клиентской базы и локальной репутации</p>
+                </div>
+                <div class="problem-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Потеря времени на "холодные" звонки</h3>
+                    <p>Обработка множества запросов без гарантии бронирования</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="solution">
+            <h2 class="section-title">Наше решение - obanket.ru</h2>
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h3>Эффективный канал привлечения клиентов</h3>
+                    <p>Obanket.ru — это специализированная платформа, которая соединяет вас с целевой аудиторией, уже готовой к бронированию.</p>
+                    <p>Мы повышаем вашу видимость в интернете и помогаем привлекать новых гостей без увеличения маркетингового бюджета.</p>
+                    <p>Наша платформа работает как ваш онлайн-менеджер по продажам 24/7, экономя ваше время и ресурсы.</p>
+                    <a href="#steps" class="btn btn-primary">Узнать подробности</a>
+                </div>
+                <div class="solution-image">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Банкетный зал">
+                </div>
+            </div>
+        </section>
+
+        <section id="audience">
+            <h2 class="section-title">Наша аудитория - ваши будущие клиенты</h2>
+            <div class="audience-cards">
+                <div class="audience-card">
+                    <div class="card-header">
+                        <h3>Корпоративные клиенты</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Организаторы корпоративных мероприятий</li>
+                            <li><i class="fas fa-check"></i> HR-менеджеры (тимбилдинги, праздники)</li>
+                            <li><i class="fas fa-check"></i> Руководители отделов</li>
+                            <li><i class="fas fa-check"></i> Секретари и офис-менеджеры</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="audience-card">
+                    <div class="card-header">
+                        <h3>Частные клиенты</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Семьи (дни рождения, юбилеи, свадьбы)</li>
+                            <li><i class="fas fa-check"></i> Молодожены</li>
+                            <li><i class="fas fa-check"></i> Организаторы частных вечеринок</li>
+                            <li><i class="fas fa-check"></i> Выпускники и студенты</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="benefits" class="benefits">
+            <h2 class="section-title">Преимущества для партнеров</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Рост доходности</h3>
+                    <p>Увеличение выручки за счет дополнительного канала продаж</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Повышение видимости</h3>
+                    <p>Продвижение вашей площадки среди целевой аудитории</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Экономия времени</h3>
+                    <p>Сокращение затрат на маркетинг и привлечение клиентов</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <h3>Аналитика и отчетность</h3>
+                    <p>Прозрачная статистика по просмотрам и запросам</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="steps">
+            <h2 class="section-title">Как начать работать с нами</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Регистрация и заполнение профиля</h3>
+                        <p>Добавьте фото, описание, меню, условия аренды и особые предложения</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Получайте запросы от клиентов</h3>
+                        <p>Гости отправляют заявки с параметрами мероприятия через нашу платформу</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Закрывайте бронирования</h3>
+                        <p>Общайтесь с клиентом напрямую и подтверждайте бронь</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="cta">
+            <h2>Готовы стать нашим партнером?</h2>
+            <p>Присоединяйтесь к сети obanket.ru и начните получать новых клиентов уже сегодня!</p>
+            <a href="https://obanket.ru/request/contractor" class="btn" target="_blank">Зарегистрироваться</a>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <a href="tel:+74951234567">
+                        <i class="fas fa-phone"></i>
+                        <span>+7 (495) 123-45-67</span>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="mailto:partners@obanket.ru">
+                        <i class="fas fa-envelope"></i>
+                        <span>partners@obanket.ru</span>
+                    </a>
+                </div>
+                <div class="contact-item">
+                    <a href="https://obanket.ru/info/partneram" target="_blank">
+                        <i class="fas fa-globe"></i>
+                        <span>obanket.ru/info/partneram</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <i class="fas fa-glass-cheers" style="color: #3498db; font-size: 28px;"></i>
+                    <h1 style="color: white;">obanket.<span style="color: #3498db;">ru</span></h1>
+                </div>
+                <p>Ведущая платформа по подбору площадок для мероприятий</p>
+                <div class="social-links">
+                    <a href="https://vk.com/obanket" target="_blank"><i class="fab fa-vk"></i></a>
+                    <a href="https://t.me/obanket" target="_blank"><i class="fab fa-telegram"></i></a>
+                    <a href="https://instagram.com/obanket" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/obanket" target="_blank"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Плавная прокрутка к якорям
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Анимация появления элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Наблюдаем за карточками и секциями
+        document.querySelectorAll('.problem-card, .benefit-card, .audience-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
